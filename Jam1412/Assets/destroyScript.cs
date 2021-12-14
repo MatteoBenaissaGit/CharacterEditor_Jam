@@ -10,6 +10,7 @@ public class destroyScript : MonoBehaviour
     
     private void Update()
     {
+        Debug.Log(transform.position.x);
         if (transform.position.x < 5)
         {
             can_be_destroyed = true;

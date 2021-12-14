@@ -41,10 +41,15 @@ public class MainScript : MonoBehaviour
     int legs_number = 0;
 
     //odeur
+    public AudioSource PROUT;
+    public AudioSource CLIC;
+    public AudioSource JUS;
     public Rigidbody2D _odeur1;
+    public Rigidbody2D _odeur2;
 
     public void Change_head_right()
     {
+        PROUT.Play();
         Rigidbody2D clone;
         clone = Instantiate(_odeur1, _headpos.transform.position, _headpos.transform.rotation);
 
@@ -64,6 +69,7 @@ public class MainScript : MonoBehaviour
     }
     public void Change_head_left()
     {
+        PROUT.Play();
         Rigidbody2D clone;
         clone = Instantiate(_odeur1, _headpos.transform.position, _headpos.transform.rotation);
 
@@ -83,8 +89,9 @@ public class MainScript : MonoBehaviour
     }
     public void Change_body_right()
     {
+        PROUT.Play();
         Rigidbody2D clone;
-        clone = Instantiate(_odeur1, _bodypos.transform.position, _bodypos.transform.rotation);
+        clone = Instantiate(_odeur2, _bodypos.transform.position, _bodypos.transform.rotation);
         if (body_number < 5)
         {
             body_number++;
@@ -101,6 +108,7 @@ public class MainScript : MonoBehaviour
     }
     public void Change_body_left()
     {
+        PROUT.Play();
         Rigidbody2D clone;
         clone = Instantiate(_odeur1, _bodypos.transform.position, _bodypos.transform.rotation);
         if (body_number >= 0)
@@ -119,12 +127,17 @@ public class MainScript : MonoBehaviour
     }
     public void Change_weapon_right()
     {
+        PROUT.Play();
         Rigidbody2D clone;
-        clone = Instantiate(_odeur1, _weaponpos.transform.position, _weaponpos.transform.rotation);
+        clone = Instantiate(_odeur2, _weaponpos.transform.position, _weaponpos.transform.rotation);
         if (weapon_number < 5)
         {
             weapon_number++;
             jauge_value++;
+            if (weapon_number == 4)
+            {
+                JUS.Play();
+            }
         }
         if (weapon_number == 5)
         {
@@ -138,6 +151,7 @@ public class MainScript : MonoBehaviour
     }
     public void Change_weapon_left()
     {
+        PROUT.Play();
         Rigidbody2D clone;
         clone = Instantiate(_odeur1, _weaponpos.transform.position, _weaponpos.transform.rotation);
         if (weapon_number >= 0)
@@ -147,6 +161,7 @@ public class MainScript : MonoBehaviour
         }
         if (weapon_number == -1)
         {
+            JUS.Play();
             weapon_number = 4;
             jauge_value += 5;
         }
@@ -157,6 +172,7 @@ public class MainScript : MonoBehaviour
     }
     public void Change_legs_right()
     {
+        PROUT.Play();
         Rigidbody2D clone;
         clone = Instantiate(_odeur1, _legspos.transform.position, _legspos.transform.rotation);
         if (legs_number < 5)
@@ -176,8 +192,9 @@ public class MainScript : MonoBehaviour
     }
     public void Change_legs_left()
     {
+        PROUT.Play();
         Rigidbody2D clone;
-        clone = Instantiate(_odeur1, _legspos.transform.position, _legspos.transform.rotation);
+        clone = Instantiate(_odeur2, _legspos.transform.position, _legspos.transform.rotation);
         if (legs_number >= 0)
         {
             legs_number--;
@@ -312,6 +329,7 @@ public class MainScript : MonoBehaviour
             Change_weapon_left();
             Change_legs_left();
         }
+        CLIC.Play();
     }
 
 }
