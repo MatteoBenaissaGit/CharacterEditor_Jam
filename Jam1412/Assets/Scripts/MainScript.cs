@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
+    //JAUGE
+    public int jauge_value;
+    public int jauge_max;
+    public Image ImageLife;
+
     //TEXTE
     [SerializeField] TextCharacter _TextCharacter;
 
@@ -35,10 +41,12 @@ public class MainScript : MonoBehaviour
         if (head_number < 4)
         {
             head_number++;
+            jauge_value++;
         }
         if (head_number == 4)
         {
             head_number = 0;
+            jauge_value -= 4;
         }
         _head.sprite = HeadspriteArray[head_number];
         Debug.Log("CHANGE HEAD RIGHT");
@@ -49,10 +57,12 @@ public class MainScript : MonoBehaviour
         if (head_number >= 0)
         {
             head_number--;
+            jauge_value --;
         }
         if (head_number == -1)
         {
             head_number = 3;
+            jauge_value += 4;
         }
         _head.sprite = HeadspriteArray[head_number];
         Debug.Log("CHANGE HEAD LEFT");
@@ -63,10 +73,12 @@ public class MainScript : MonoBehaviour
         if (body_number < 4)
         {
             body_number++;
+            jauge_value++;
         }
         if (body_number == 4)
         {
             body_number = 0;
+            jauge_value -= 4;
         }
         _body.sprite = BodyspriteArray[body_number];
         Debug.Log("CHANGE BODY RIGHT");
@@ -77,10 +89,12 @@ public class MainScript : MonoBehaviour
         if (body_number >= 0)
         {
             body_number--;
+            jauge_value--;
         }
         if (body_number == -1)
         {
             body_number = 3;
+            jauge_value += 4;
         }
         _body.sprite = BodyspriteArray[body_number];
         Debug.Log("CHANGE BODY LEFT");
@@ -91,10 +105,12 @@ public class MainScript : MonoBehaviour
         if (weapon_number < 4)
         {
             weapon_number++;
+            jauge_value++;
         }
         if (weapon_number == 4)
         {
             weapon_number = 0;
+            jauge_value -= 4;
         }
         _rightarm.sprite = RightarmspriteArray[weapon_number];
         _leftarm.sprite = LeftarmspriteArray[weapon_number];
@@ -106,10 +122,12 @@ public class MainScript : MonoBehaviour
         if (weapon_number >= 0)
         {
             weapon_number--;
+            jauge_value--;
         }
         if (weapon_number == -1)
         {
             weapon_number = 3;
+            jauge_value += 4;
         }
         _rightarm.sprite = RightarmspriteArray[weapon_number];
         _leftarm.sprite = LeftarmspriteArray[weapon_number];
@@ -121,10 +139,12 @@ public class MainScript : MonoBehaviour
         if (legs_number < 4)
         {
             legs_number++;
+            jauge_value++;
         }
         if (legs_number == 4)
         {
             legs_number = 0;
+            jauge_value -= 4;
         }
         _rightleg.sprite = RightlegspriteArray[legs_number];
         _leftleg.sprite = LeftlegspriteArray[legs_number];
@@ -136,10 +156,12 @@ public class MainScript : MonoBehaviour
         if (legs_number >= 0)
         {
             legs_number--;
+            jauge_value--;
         }
         if (legs_number == -1)
         {
             legs_number = 3;
+            jauge_value += 4;
         }
         _rightleg.sprite = RightlegspriteArray[legs_number];
         _leftleg.sprite = LeftlegspriteArray[legs_number];
@@ -149,6 +171,10 @@ public class MainScript : MonoBehaviour
 
     private void Update()
     {
+        //jauge
+        float percent = (float)jauge_value / (float)jauge_max;
+        ImageLife.fillAmount = percent;
+
         //head
         switch (head_number)
         {
